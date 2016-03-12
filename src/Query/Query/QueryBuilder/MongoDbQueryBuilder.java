@@ -5,9 +5,9 @@ import Query.Query.Query;
 
 import java.util.LinkedList;
 
-public class MongoQueryBuilder extends AbstractQueryBuilder
+public class MongoDbQueryBuilder extends AbstractQueryBuilder
 {
-    public MongoQueryBuilder(Query query)
+    public MongoDbQueryBuilder(Query query)
     {
         super(query);
     }

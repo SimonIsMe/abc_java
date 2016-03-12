@@ -2,7 +2,7 @@ package Db;
 
 import Query.Query.Query;
 
-interface DbAccessInterface
+public interface DbAccessInterface
 {
     public void read(Query query);
     public void create(Query query);

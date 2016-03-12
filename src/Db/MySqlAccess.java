@@ -2,20 +2,20 @@ package Db;
 
 import Query.Query.Query;
 
-public class MongoDbAccess implements DbAccessInterface
+public class MySqlAccess implements DbAccessInterface
 {
-    private static MongoDbAccess _instance;
+    private static MySqlAccess _instance;
 
-    private MongoDbAccess()
+    private MySqlAccess()
     {
     }
 
-    public static MongoDbAccess getInstance()
+    public static MySqlAccess getInstance()
     {
-        if (MongoDbAccess._instance == null)
-            MongoDbAccess._instance = new MongoDbAccess();
+        if (MySqlAccess._instance == null)
+            MySqlAccess._instance = new MySqlAccess();
 
-        return MongoDbAccess._instance;
+        return MySqlAccess._instance;
     }
 
     @Override
