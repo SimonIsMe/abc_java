@@ -39,7 +39,7 @@ public class ConfigTest
         file.delete();
 
         File file2 = new File("./src/ConfigIni/test-zly.ini");
-        file.delete();
+        file2.delete();
     }
 
     @org.junit.Test

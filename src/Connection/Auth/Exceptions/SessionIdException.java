@@ -1,4 +1,4 @@
-package Client.Auth.Exceptions;
+package Connection.Auth.Exceptions;
 
 public class SessionIdException extends AuthException
 {

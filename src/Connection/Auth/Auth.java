@@ -1,6 +1,6 @@
-package Client.Auth;
+package Connection.Auth;
 
-import Client.Auth.Exceptions.SessionIdException;
+import Connection.Auth.Exceptions.SessionIdException;
 
 public class Auth
 {

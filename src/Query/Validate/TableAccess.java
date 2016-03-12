@@ -1,6 +1,6 @@
 package Query.Validate;
 
-import Client.User;
+import Connection.User;
 import Query.Query.Query;
 
 public class TableAccess implements ValidateInterface
