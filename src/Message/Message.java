@@ -1,6 +1,6 @@
 package Message;
 
-import Query.Query;
+import Query.Query.Query;
 
 public class Message extends AbstractMessage
 {

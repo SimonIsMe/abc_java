@@ -1,5 +1,6 @@
 package Query;
 
+import Query.Query.Query;
 import Query.Validate.RowAccess;
 import Query.Validate.TableAccess;
 

@@ -1,6 +1,6 @@
 package Query.Validate;
 
-import Query.Query;
+import Query.Query.Query;
 
 interface ValidateInterface
 {
