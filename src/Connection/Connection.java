@@ -17,7 +17,7 @@ public class Connection
 
     public Connection(ClientInterface client)
     {
-        this._id = "aa";
+        this._id = ConnectionIdGenerator.getInstance().getNext();
         this._client = client;
     }
 
