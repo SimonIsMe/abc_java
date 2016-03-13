@@ -1,6 +1,7 @@
 package Connection;
 
 import Connection.Client.ClientInterface;
+import Connection.Message.RequestMessage;
 import Connection.Message.ResponseMessage;
 
 public class Connection
@@ -28,6 +29,11 @@ public class Connection
     public void send(ResponseMessage message)
     {
         this._client.send(message.toString());
+    }
+
+    public void onMessage(RequestMessage message)
+    {
+
     }
 
     public void close()

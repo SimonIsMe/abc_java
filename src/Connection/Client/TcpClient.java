@@ -6,4 +6,10 @@ public class TcpClient implements ClientInterface
     {
 
     }
+
+    @Override
+    public void onClose()
+    {
+
+    }
 }
