@@ -1,6 +1,6 @@
-package Connection.Message.Parser;
+package Connection.Message.RequestMessageParser;
 
-import Connection.Message.Parser.Decorators.*;
+import Connection.Message.RequestMessageParser.QueryDecorators.*;
 import org.json.JSONObject;
 import Helper.Helper;
 import java.util.LinkedList;
@@ -34,7 +34,7 @@ public class RequestMessageQueryParser
     {
         boolean isValidate = this._validateType();
 
-        AbstractRequestMessageQueryParserDecorator decorator = this._getDecorator();
+        AbstractDecorator decorator = this._getDecorator();
         isValidate &= decorator.validate();
 
         this._errorCodes.addAll(decorator.getErrorCodes());
@@ -53,17 +53,17 @@ public class RequestMessageQueryParser
         return isValidate;
     }
 
-    private AbstractRequestMessageQueryParserDecorator _getDecorator()
+    private AbstractDecorator _getDecorator()
     {
         switch (this._query.getString(TYPE_LABEL)) {
             case READ_TYPE:
-                return new RequestMessageQueryReadParserDecorator(this);
+                return new ReadDecorator(this);
             case CREATE_TYPE:
-                return new RequestMessageQueryCreateParserDecorator(this);
+                return new CreateDecorator(this);
             case UPDATE_TYPE:
-                return new RequestMessageQueryUpdateParserDecorator(this);
+                return new UpdateDecorator(this);
             case DELETE_TYPE:
-                return new RequestMessageQueryDeleteParserDecorator(this);
+                return new DeleteDecorator(this);
         }
 
         return null;

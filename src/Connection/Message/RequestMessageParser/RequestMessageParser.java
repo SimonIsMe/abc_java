@@ -1,4 +1,4 @@
-package Connection.Message.Parser;
+package Connection.Message.RequestMessageParser;
 
 import org.json.JSONObject;
 
