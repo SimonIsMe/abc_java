@@ -1,6 +1,6 @@
 package Connection.Endpoints;
 
-public class TcpEndpoint
+public class TcpEndpoint implements EndpointInterface
 {
     
 }

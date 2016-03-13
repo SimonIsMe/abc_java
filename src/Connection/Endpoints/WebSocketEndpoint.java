@@ -13,7 +13,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/server")
-public class WebSocketEndpoint
+public class WebSocketEndpoint implements EndpointInterface
 {
     @OnOpen
     public void onOpen (Session session)
@@ -32,15 +32,17 @@ public class WebSocketEndpoint
     @OnMessage
     public void onMessage(String message, Session session)
     {
-        Connection connection = ConnectionsManager.getInstance().findConnection(session.getId());
+        if (message.equals(EndpointInterface.PING_MESSAGE)) {
+            session.getAsyncRemote().sendText(EndpointInterface.PONG_MESSAGE);
+        }
 
+        Connection connection = ConnectionsManager.getInstance().findConnection(session.getId());
         RequestMessage requestMessage = null;
         try {
             requestMessage = RequestMessage.parse(message);
         } catch (ParseRequestMessageException exception) {
             session.getAsyncRemote().sendText(exception.toString());
         }
-
         connection.onMessage(requestMessage);
     }
 }

@@ -18,13 +18,13 @@ public class ConfigTest
     {
         PrintWriter pw = new PrintWriter("./src/ConfigIni/test.ini", "UTF-8");
         pw.println("[production]");
-        pw.println("wartosc=123");
-        pw.println("wartosc.wartoscABC=456");
+        pw.println("test.wartosc=123");
+        pw.println("test.wartosc.wartoscABC=456");
         pw.println("");
         pw.println("; jakiś komentarz");
         pw.println("[development]");
-        pw.println("wartosc = 78");
-        pw.println("wartosc.wartoscABC = 90");
+        pw.println("test.wartosc = 78");
+        pw.println("test.wartosc.wartoscABC = 90");
         pw.close();
 
         PrintWriter pw2 = new PrintWriter("./src/ConfigIni/test-zly.ini", "UTF-8");

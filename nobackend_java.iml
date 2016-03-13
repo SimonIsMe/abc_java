@@ -38,5 +38,12 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="jedis-2.1.0-sources" level="project" />
+    <orderEntry type="library" name="jedis-2.1.0-sources (2)" level="project" />
+    <orderEntry type="library" name="jedis" level="project" />
+    <orderEntry type="library" name="jedis (2)" level="project" />
+    <orderEntry type="library" name="lettuce-3.4.2.Final" level="project" />
+    <orderEntry type="library" name="lettuce-4.1.1.Final" level="project" />
+    <orderEntry type="library" name="jedis-2.8.0" level="project" />
   </component>
 </module>

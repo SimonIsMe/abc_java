@@ -68,12 +68,14 @@ public class Config
 
     private static String _getKeyName(String name)
     {
-        String[] parts = name.split("\\.");
-        String toReturn = "";
-        for (int i = 1; i < parts.length; i++) {
-            toReturn += parts[i] + ".";
-        }
+        return name;
 
-        return toReturn.substring(0, toReturn.length() - 1);
+//        String[] parts = name.split("\\.");
+//        String toReturn = "";
+//        for (int i = 1; i < parts.length; i++) {
+//            toReturn += parts[i] + ".";
+//        }
+//
+//        return toReturn.substring(0, toReturn.length() - 1);
     }
 }
