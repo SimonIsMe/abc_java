@@ -1,7 +1,6 @@
 package Connection.Message.RequestMessageParser;
 
 import org.json.JSONObject;
-
 import java.util.LinkedList;
 
 public class RequestMessageParser
@@ -10,17 +9,16 @@ public class RequestMessageParser
     public static final String REQUEST_ID_LABEL = "requestId";
     public static final String QUERIES_LABEL = "queries";
 
+    public static final int SESSION_ID_ERROR_CODE = 1;
+    public static final int REQUEST_ID_ERROR_CODE = 2;
+
     private final String _message;
+    private JSONObject _json;
 
     private String _sessionId;
     private String _requestId;
 
-    public static final int SESSION_ID_ERROR_CODE = 1;
-    public static final int REQUEST_ID_ERROR_CODE = 2;
-
     private LinkedList<Integer> _errorCodes = new LinkedList<>();
-
-    private JSONObject _json;
 
     public RequestMessageParser(String message)
     {

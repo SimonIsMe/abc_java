@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class RequestMessageQueryParser
 {
     public static final String TYPE_LABEL = "type";
+    public static final String QUERY_ID_LABEL = "queryId";
 
     public static final String READ_TYPE = "READ";
     public static final String CREATE_TYPE = "CREATE";
@@ -15,6 +16,7 @@ public class RequestMessageQueryParser
     public static final String DELETE_TYPE = "DELETE";
 
     public static final int TYPE_ERROR_CODE = 1;
+    public static final int QUERY_ID_ERROR_CODE = 2;
 
     private JSONObject _query;
 
@@ -32,13 +34,12 @@ public class RequestMessageQueryParser
 
     public boolean validate()
     {
-        boolean isValidate = this._validateType();
+        boolean isValidate = this._validateType() && this._validateQueryId();
 
         AbstractDecorator decorator = this._getDecorator();
         isValidate &= decorator.validate();
 
         this._errorCodes.addAll(decorator.getErrorCodes());
-
         return isValidate;
     }
 
@@ -49,6 +50,17 @@ public class RequestMessageQueryParser
 
         if (isValidate)
             this._errorCodes.add(TYPE_ERROR_CODE);
+
+        return isValidate;
+    }
+
+    public boolean _validateQueryId()
+    {
+        String queryId = this._query.getString(QUERY_ID_LABEL);
+        boolean isValidate = queryId == null;
+
+        if (isValidate)
+            this._errorCodes.add(QUERY_ID_ERROR_CODE);
 
         return isValidate;
     }
