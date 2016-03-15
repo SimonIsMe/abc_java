@@ -1,7 +1,7 @@
 package Query.Validate;
 
 import Connection.User;
-import Query.Query.Query;
+import Query.Query.Queries.ReadQuery;
 
 public class RowAccess implements ValidateInterface
 {
@@ -25,7 +25,7 @@ public class RowAccess implements ValidateInterface
         return _instance;
     }
 
-    public boolean checkAccess(Query query) {
+    public boolean checkAccess(ReadQuery readQuery) {
         return false;
     }
 

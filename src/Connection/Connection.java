@@ -5,6 +5,8 @@ import Connection.Client.ClientInterface;
 import Connection.Message.RequestMessage;
 import Connection.Message.ResponseMessage;
 import Connection.Auth.Auth;
+import Query.ExecuteQuery;
+import Query.Query.Queries.AbstractQuery;
 
 public class Connection
 {
@@ -51,7 +53,10 @@ public class Connection
 
     public void onMessage(RequestMessage message)
     {
-
+        ExecuteQuery executeQuery = new ExecuteQuery();
+        for (AbstractQuery query : message.getAbstractQueries()) {
+            executeQuery.execute(query, this);
+        }
     }
 
     public void close()

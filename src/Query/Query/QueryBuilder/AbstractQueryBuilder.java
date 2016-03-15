@@ -1,20 +1,20 @@
 package Query.Query.QueryBuilder;
 
-import Query.Query.Query;;
+import Query.Query.Queries.ReadQuery;;
 
 public abstract class AbstractQueryBuilder
 {
-    private final Query _query;
+    private final ReadQuery _Read_query;
 
     abstract public String getString();
 
-    public AbstractQueryBuilder(Query query)
+    public AbstractQueryBuilder(ReadQuery readQuery)
     {
-        this._query = query;
+        this._Read_query = readQuery;
     }
 
-    public Query getQuery()
+    public ReadQuery getQuery()
     {
-        return this._query;
+        return this._Read_query;
     }
 }

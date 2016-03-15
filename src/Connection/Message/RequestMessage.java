@@ -3,7 +3,11 @@ package Connection.Message;
 import Connection.Message.Exceptions.ParseRequestMessageException;
 import Connection.Connection;
 import Connection.Message.RequestMessageParser.RequestMessageParser;
+import Query.Query.Queries.AbstractQuery;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.LinkedList;
 
 public class RequestMessage
 {
@@ -14,6 +18,26 @@ public class RequestMessage
     {
         this._json = json;
         this._connection = connection;
+    }
+
+    public Connection getConnection()
+    {
+        return this._connection;
+    }
+
+    public JSONObject getJson()
+    {
+        return this._json;
+    }
+
+    public JSONArray getQueries()
+    {
+        return this._json.getJSONArray(RequestMessageParser.QUERIES_LABEL);
+    }
+
+    public LinkedList<AbstractQuery> getAbstractQueries()
+    {
+        return new LinkedList<>();
     }
 
     public static RequestMessage parse(String message, Connection connection) throws ParseRequestMessageException

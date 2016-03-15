@@ -1,4 +1,4 @@
-package Connection.Message.RequestMessageParser.QueryDecorators.RequestValidators;
+package Connection.Message.RequestMessageParser.RequestValidators;
 
 public class ModelNameValidate implements ValidateInterface
 {

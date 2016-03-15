@@ -1,15 +1,15 @@
 package Query.Query.QueryBuilder;
 
 import Query.Query.Conditions.AbstractCondition;
-import Query.Query.Query;
+import Query.Query.Queries.ReadQuery;
 
 import java.util.LinkedList;
 
 public class MongoDbQueryBuilder extends AbstractQueryBuilder
 {
-    public MongoDbQueryBuilder(Query query)
+    public MongoDbQueryBuilder(ReadQuery readQuery)
     {
-        super(query);
+        super(readQuery);
     }
 
     public String getString()

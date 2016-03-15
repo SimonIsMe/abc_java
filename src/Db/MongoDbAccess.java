@@ -1,6 +1,6 @@
 package Db;
 
-import Query.Query.Query;
+import Query.Query.Queries.ReadQuery;
 
 public class MongoDbAccess implements DbAccessInterface
 {
@@ -19,25 +19,25 @@ public class MongoDbAccess implements DbAccessInterface
     }
 
     @Override
-    public void read(Query query)
+    public void read(ReadQuery readQuery)
     {
 
     }
 
     @Override
-    public void create(Query query)
+    public void create(ReadQuery readQuery)
     {
 
     }
 
     @Override
-    public void update(Query query)
+    public void update(ReadQuery readQuery)
     {
 
     }
 
     @Override
-    public void delete(Query query)
+    public void delete(ReadQuery readQuery)
     {
 
     }

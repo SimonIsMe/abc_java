@@ -2,24 +2,25 @@ package Query;
 
 import Db.DbAccessInterface;
 import Db.MySqlAccess;
-import Query.Query.Query;
+import Query.Query.Queries.*;
 import Query.Validate.RowAccess;
 import Query.Validate.TableAccess;
+import Connection.Connection;
 
-class ExecuteQuery
+public class ExecuteQuery
 {
-    public void execute(Query query)
+    public void execute(AbstractQuery query, Connection connection)
     {
         switch (query.getType()) {
-            case Query.READ_TYPE:
-            case Query.UPDATE_TYPE:
-            case Query.DELETE_TYPE:
+            case ReadQuery.READ_TYPE:
+            case ReadQuery.UPDATE_TYPE:
+            case ReadQuery.DELETE_TYPE:
                 if (TableAccess.getInstance().checkAccess(query) &&
                     RowAccess.getInstance().checkAccess(query)) {
                     this._runQueryInDatabase(query);
                 }
                 break;
-            case Query.CREATE_TYPE:
+            case ReadQuery.CREATE_TYPE:
                 if (TableAccess.getInstance().checkAccess(query)) {
                     this._runQueryInDatabase(query);
                 }
@@ -27,22 +28,22 @@ class ExecuteQuery
         }
     }
 
-    private void _runQueryInDatabase(Query query)
+    private void _runQueryInDatabase(AbstractQuery query)
     {
         DbAccessInterface dbAccess = MySqlAccess.getInstance();
 
         switch (query.getType()) {
-            case Query.READ_TYPE:
-                dbAccess.read(query);
+            case ReadQuery.READ_TYPE:
+                dbAccess.read((ReadQuery) query);
                 break;
-            case Query.DELETE_TYPE:
-                dbAccess.delete(query);
+            case ReadQuery.DELETE_TYPE:
+                dbAccess.delete((DeleteQuery) query);
                 break;
-            case Query.CREATE_TYPE:
-                dbAccess.create(query);
+            case ReadQuery.CREATE_TYPE:
+                dbAccess.create((CreateQuery) query);
                 break;
-            case Query.UPDATE_TYPE:
-                dbAccess.update(query);
+            case ReadQuery.UPDATE_TYPE:
+                dbAccess.update((UpdateQuery) query);
                 break;
         }
     }

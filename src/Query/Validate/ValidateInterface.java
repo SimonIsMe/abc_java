@@ -1,8 +1,8 @@
 package Query.Validate;
 
-import Query.Query.Query;
+import Query.Query.Queries.AbstractQuery;
 
 interface ValidateInterface
 {
-    public boolean checkAccess(Query query);
+    public boolean checkAccess(AbstractQuery readQuery);
 }

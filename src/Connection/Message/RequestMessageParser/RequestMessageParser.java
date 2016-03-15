@@ -1,5 +1,8 @@
 package Connection.Message.RequestMessageParser;
 
+import Connection.Auth.Auth;
+import Connection.Auth.Exceptions.SessionIdException;
+import Connection.Message.RequestMessageParser.RequestValidators.SessionIdValidate;
 import org.json.JSONObject;
 import java.util.LinkedList;
 import Connection.Connection;
@@ -67,9 +70,11 @@ public class RequestMessageParser
     public boolean _validateSessionId()
     {
         this._sessionId = this._json.getString(SESSION_ID_LABEL);
-        boolean isValidate = this._sessionId == null;
+        boolean isValidate = this._sessionId != null;
 
-        if (isValidate)
+        SessionIdValidate sessionIdValidate = new SessionIdValidate(this._sessionId);
+
+        if (!isValidate || sessionIdValidate.validate())
             this._errorCodes.add(SESSION_ID_ERROR_CODE);
 
         return isValidate;
@@ -78,9 +83,9 @@ public class RequestMessageParser
     public boolean _validateRequestId()
     {
         this._requestId = this._json.getString(REQUEST_ID_LABEL);
-        boolean isValidate = this._requestId == null;
+        boolean isValidate = this._requestId != null;
 
-        if (isValidate)
+        if (!isValidate)
             this._errorCodes.add(REQUEST_ID_ERROR_CODE);
 
         return isValidate;
@@ -88,6 +93,10 @@ public class RequestMessageParser
 
     private String _getUserId()
     {
+        try {
+            return Auth.getInstance().getUserId(this.getSessionId());
+        } catch (SessionIdException e) {
+        }
         return "";
     }
 }

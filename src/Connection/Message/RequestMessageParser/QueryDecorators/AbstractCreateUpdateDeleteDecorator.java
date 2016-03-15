@@ -1,7 +1,7 @@
 package Connection.Message.RequestMessageParser.QueryDecorators;
 
-import Connection.Message.RequestMessageParser.QueryDecorators.RequestValidators.ModelIdValidate;
-import Connection.Message.RequestMessageParser.QueryDecorators.RequestValidators.ModelNameValidate;
+import Connection.Message.RequestMessageParser.RequestValidators.ModelIdValidate;
+import Connection.Message.RequestMessageParser.RequestValidators.ModelNameValidate;
 import Connection.Message.RequestMessageParser.RequestMessageQueryParser;
 
 public class AbstractCreateUpdateDeleteDecorator extends AbstractDecorator
