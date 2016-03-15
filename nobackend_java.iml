@@ -4,6 +4,19 @@
     <facet type="WebServicesClient" name="WebServices Client">
       <configuration ws.engine="Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" />
     </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src" />
+        </sourceRoots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -14,8 +27,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JAX-WS-Glassfish / JAX-WS 2.2 RI / Metro 1.X / JWSDP 2.2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.1" level="application_server_libraries" />
-    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.1 - WebSocket" level="application_server_libraries" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="GlassFish 4.1.1" level="application_server_libraries" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="GlassFish 4.1.1 - WebSocket" level="application_server_libraries" />
     <orderEntry type="library" name="ini4j-0.5.4-jdk14" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
@@ -37,13 +50,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="json" level="project" />
-    <orderEntry type="library" name="jedis-2.1.0-sources" level="project" />
-    <orderEntry type="library" name="jedis-2.1.0-sources (2)" level="project" />
-    <orderEntry type="library" name="jedis" level="project" />
-    <orderEntry type="library" name="jedis (2)" level="project" />
-    <orderEntry type="library" name="lettuce-3.4.2.Final" level="project" />
-    <orderEntry type="library" name="lettuce-4.1.1.Final" level="project" />
-    <orderEntry type="library" name="jedis-2.8.0" level="project" />
+    <orderEntry type="library" exported="" name="json" level="project" />
+    <orderEntry type="library" exported="" name="jedis-2.8.0" level="project" />
   </component>
 </module>

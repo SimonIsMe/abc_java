@@ -6,6 +6,7 @@ public class ResponseMessage
 {
     public static final int OK_STATUS = 200;
     public static final int ERROR_STATUS = 500;
+    public static final int VALIDATE_ERROR_STATUS = 402;
     public static final int FORBIDDEN_STATUS = 403;
     public static final int NOT_FOUND_STATUS = 404;
 

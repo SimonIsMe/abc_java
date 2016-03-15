@@ -2,6 +2,7 @@ package Connection.Message.RequestMessageParser;
 
 import org.json.JSONObject;
 import java.util.LinkedList;
+import Connection.Connection;
 
 public class RequestMessageParser
 {
@@ -13,16 +14,19 @@ public class RequestMessageParser
     public static final int REQUEST_ID_ERROR_CODE = 2;
 
     private final String _message;
+    private final Connection _connection;
     private JSONObject _json;
 
     private String _sessionId;
     private String _requestId;
+    private String _userId;
 
     private LinkedList<Integer> _errorCodes = new LinkedList<>();
 
-    public RequestMessageParser(String message)
+    public RequestMessageParser(String message, Connection connection)
     {
         this._message = message;
+        this._connection = connection;
         this._json = new JSONObject(this._message);
     }
 
@@ -36,13 +40,24 @@ public class RequestMessageParser
         return this._requestId;
     }
 
+    public String getUserId()
+    {
+        return this._userId;
+    }
+
+    public JSONObject getJson()
+    {
+        return this._json;
+    }
+
     public boolean validate()
     {
         boolean isValidate = this._validateSessionId() && this._validateRequestId();
+        this._userId = this._getUserId();
 
         for (Object item : this._json.getJSONArray(QUERIES_LABEL)) {
             JSONObject itemObject = (JSONObject) item;
-            RequestMessageQueryParser requestMessageQueryParser = new RequestMessageQueryParser(itemObject);
+            RequestMessageQueryParser requestMessageQueryParser = new RequestMessageQueryParser(itemObject, this._userId);
             isValidate &= requestMessageQueryParser.validate();
         }
 
@@ -69,5 +84,10 @@ public class RequestMessageParser
             this._errorCodes.add(REQUEST_ID_ERROR_CODE);
 
         return isValidate;
+    }
+
+    private String _getUserId()
+    {
+        return "";
     }
 }

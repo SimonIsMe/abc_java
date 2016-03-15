@@ -16,9 +16,9 @@ public class ReadDecorator extends AbstractDecorator
     public static final int LIMIT_ERROR_CODE = 105;
     public static final int FROM_ERROR_CODE = 106;
 
-    public ReadDecorator(RequestMessageQueryParser requestMessageParser)
+    public ReadDecorator(RequestMessageQueryParser requestMessageParser, String userId)
     {
-        super(requestMessageParser);
+        super(requestMessageParser, userId);
     }
 
     public boolean validate()

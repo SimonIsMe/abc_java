@@ -39,7 +39,7 @@ public class WebSocketEndpoint implements EndpointInterface
         Connection connection = ConnectionsManager.getInstance().findConnection(session.getId());
         RequestMessage requestMessage = null;
         try {
-            requestMessage = RequestMessage.parse(message);
+            requestMessage = RequestMessage.parse(message, connection);
         } catch (ParseRequestMessageException exception) {
             session.getAsyncRemote().sendText(exception.toString());
         }

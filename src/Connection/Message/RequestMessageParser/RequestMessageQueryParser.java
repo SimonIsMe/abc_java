@@ -18,13 +18,15 @@ public class RequestMessageQueryParser
     public static final int TYPE_ERROR_CODE = 1;
     public static final int QUERY_ID_ERROR_CODE = 2;
 
-    private JSONObject _query;
+    private final JSONObject _query;
+    private final String _userId;
 
     private LinkedList<Integer> _errorCodes = new LinkedList<>();
 
-    public RequestMessageQueryParser(JSONObject query)
+    public RequestMessageQueryParser(JSONObject query, String userId)
     {
         this._query = query;
+        this._userId = userId;
     }
 
     public JSONObject getJsonQuery()
@@ -69,13 +71,13 @@ public class RequestMessageQueryParser
     {
         switch (this._query.getString(TYPE_LABEL)) {
             case READ_TYPE:
-                return new ReadDecorator(this);
+                return new ReadDecorator(this, this._userId);
             case CREATE_TYPE:
-                return new CreateDecorator(this);
+                return new CreateDecorator(this, this._userId);
             case UPDATE_TYPE:
-                return new UpdateDecorator(this);
+                return new UpdateDecorator(this, this._userId);
             case DELETE_TYPE:
-                return new DeleteDecorator(this);
+                return new DeleteDecorator(this, this._userId);
         }
 
         return null;
