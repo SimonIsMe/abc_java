@@ -4,6 +4,8 @@ import Connection.Connection;
 import Notification.Repositories.HashMapRepository;
 import Notification.Repositories.NotificationInterface;
 
+import java.util.HashMap;
+
 public class NotificationManager
 {
     public static final int CHANGE_READ = 0;
@@ -11,7 +13,7 @@ public class NotificationManager
     public static final int CHANGE_UPDATE = 2;
     public static final int CHANGE_DELETE = 3;
 
-    private static NotificationManager _instance;
+    private static HashMap<String, NotificationManager> _instances = new HashMap<>();
 
     private NotificationInterface _notificationRepo;
 
@@ -20,12 +22,12 @@ public class NotificationManager
         this._notificationRepo = new HashMapRepository();
     }
 
-    public static NotificationManager getInstance()
+    public static NotificationManager getInstance(String projectId)
     {
-        if (_instance == null)
-            _instance = new NotificationManager();
+        if (_instances.get(projectId) == null)
+            _instances.put(projectId, new NotificationManager());
 
-        return _instance;
+        return _instances.get(projectId);
     }
 
     /**

@@ -14,6 +14,11 @@ public class Project
         this._projectId = projectId;
     }
 
+    public String getId()
+    {
+        return this._projectId;
+    }
+
     public static Project findProject(String projectId) throws ProjectConnectedClientsOverflowException, ProjectNotFoundException
     {
         ProjectIdValidator projectIdValidator = new ProjectIdValidator(projectId);

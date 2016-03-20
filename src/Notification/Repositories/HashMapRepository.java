@@ -50,7 +50,6 @@ public class HashMapRepository implements NotificationInterface
         return this._collectionsObservers.addObserver(connection, modelName, settings);
     }
 
-
     @Override
     public boolean removeObserver(Connection connection, String modelName)
     {
