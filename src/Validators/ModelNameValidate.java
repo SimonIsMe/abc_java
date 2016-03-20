@@ -1,14 +1,12 @@
-package Connection.Message.RequestMessageParser.RequestValidators;
+package Validators;
 
 public class ModelNameValidate implements ValidateInterface
 {
     private final String _modelName;
-    private final String _userId;
 
-    public ModelNameValidate(String modelName, String userId)
+    public ModelNameValidate(String modelName)
     {
         this._modelName = modelName;
-        this._userId = userId;
     }
 
     public boolean validate()

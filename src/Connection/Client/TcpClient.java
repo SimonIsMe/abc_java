@@ -1,5 +1,7 @@
 package Connection.Client;
 
+import Project.Project;
+
 public class TcpClient implements ClientInterface
 {
     public void send(String message)
@@ -7,7 +9,11 @@ public class TcpClient implements ClientInterface
 
     }
 
-    @Override
+    public Project getProject()
+    {
+        return null;
+    }
+
     public void onClose()
     {
 

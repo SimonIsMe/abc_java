@@ -2,6 +2,7 @@ package Query.Validate;
 
 import Connection.User;
 import Query.Query.Queries.AbstractQuery;
+import Project.Project;
 
 public class TableAccess implements ValidateInterface
 {
@@ -25,7 +26,7 @@ public class TableAccess implements ValidateInterface
         return _instance;
     }
 
-    public boolean checkAccess(AbstractQuery readQuery)
+    public boolean checkAccess(AbstractQuery readQuery, Project project)
     {
         return true;
     }

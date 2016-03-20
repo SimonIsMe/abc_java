@@ -9,6 +9,8 @@ public class ResponseMessage
     public static final int VALIDATE_ERROR_STATUS = 402;
     public static final int FORBIDDEN_STATUS = 403;
     public static final int NOT_FOUND_STATUS = 404;
+    public static final int OVERFLOW_CONNECTIONS_STATUS = 405;
+    public static final int PROJECT_NOT_FOUND_STATUS = 406;
 
     private int _status = OK_STATUS;
     private JSONObject _data;

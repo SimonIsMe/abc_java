@@ -1,13 +1,13 @@
-package Connection.Message.RequestMessageParser;
+package Connection.Message.RequestValidator;
 
 import Connection.Auth.Auth;
 import Connection.Auth.Exceptions.SessionIdException;
-import Connection.Message.RequestMessageParser.RequestValidators.SessionIdValidate;
+import Validators.SessionIdValidate;
 import org.json.JSONObject;
-import java.util.LinkedList;
-import Connection.Connection;
 
-public class RequestMessageParser
+import java.util.LinkedList;
+
+public class RequestValidator
 {
     public static final String SESSION_ID_LABEL = "sessionId";
     public static final String REQUEST_ID_LABEL = "requestId";
@@ -16,41 +16,17 @@ public class RequestMessageParser
     public static final int SESSION_ID_ERROR_CODE = 1;
     public static final int REQUEST_ID_ERROR_CODE = 2;
 
-    private final String _message;
-    private final Connection _connection;
-    private JSONObject _json;
+    private final JSONObject _json;
+
+    private LinkedList<Integer> _errorCodes = new LinkedList<>();
 
     private String _sessionId;
     private String _requestId;
     private String _userId;
 
-    private LinkedList<Integer> _errorCodes = new LinkedList<>();
-
-    public RequestMessageParser(String message, Connection connection)
+    public RequestValidator(JSONObject json)
     {
-        this._message = message;
-        this._connection = connection;
-        this._json = new JSONObject(this._message);
-    }
-
-    public String getSessionId()
-    {
-        return this._sessionId;
-    }
-
-    public String getRequestId()
-    {
-        return this._requestId;
-    }
-
-    public String getUserId()
-    {
-        return this._userId;
-    }
-
-    public JSONObject getJson()
-    {
-        return this._json;
+        this._json = json;
     }
 
     public boolean validate()
@@ -60,11 +36,16 @@ public class RequestMessageParser
 
         for (Object item : this._json.getJSONArray(QUERIES_LABEL)) {
             JSONObject itemObject = (JSONObject) item;
-            RequestMessageQueryParser requestMessageQueryParser = new RequestMessageQueryParser(itemObject, this._userId);
-            isValidate &= requestMessageQueryParser.validate();
+            QueryValidator queryValidator = new QueryValidator(itemObject);
+            isValidate &= queryValidator.validate();
         }
 
         return isValidate;
+    }
+
+    public String getSessionId()
+    {
+        return this._sessionId;
     }
 
     public boolean _validateSessionId()

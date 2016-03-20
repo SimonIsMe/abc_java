@@ -1,6 +1,9 @@
 package Db;
 
+import Query.Query.Queries.CreateQuery;
+import Query.Query.Queries.DeleteQuery;
 import Query.Query.Queries.ReadQuery;
+import Query.Query.Queries.UpdateQuery;
 
 public class MySqlAccess implements DbAccessInterface
 {
@@ -18,26 +21,22 @@ public class MySqlAccess implements DbAccessInterface
         return MySqlAccess._instance;
     }
 
-    @Override
     public void read(ReadQuery readQuery)
     {
 
     }
 
-    @Override
-    public void create(ReadQuery readQuery)
+    public void create(CreateQuery createQuery)
     {
 
     }
 
-    @Override
-    public void update(ReadQuery readQuery)
+    public void update(UpdateQuery updateQuery)
     {
 
     }
 
-    @Override
-    public void delete(ReadQuery readQuery)
+    public void delete(DeleteQuery deleteQuery)
     {
 
     }

@@ -2,7 +2,6 @@ package Connection.Message;
 
 import Connection.Message.Exceptions.ParseRequestMessageException;
 import Connection.Connection;
-import Connection.Message.RequestMessageParser.RequestMessageParser;
 import Query.Query.Queries.AbstractQuery;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,7 +31,7 @@ public class RequestMessage
 
     public JSONArray getQueries()
     {
-        return this._json.getJSONArray(RequestMessageParser.QUERIES_LABEL);
+        return this._json.getJSONArray("a");
     }
 
     public LinkedList<AbstractQuery> getAbstractQueries()
@@ -51,11 +50,18 @@ public class RequestMessage
                 {
                     "type" : "READ",
                     "queryId" : "11235",
+                    "modelName" : "User",
                     "must" : { ... },
                     "should" : { ... },
                     "mustNot" : { ... },
                     "limit" : 10,
                     "from" : 0
+                },
+                {
+                    "type" : "GET_BY_ID",
+                    "queryId" : "abc123def456",
+                    "modelName" : "User",
+                    "modelId" : "123abc"
                 },
                 {
                     "type" : "CREATE",
@@ -75,24 +81,24 @@ public class RequestMessage
                     "queryId" : "abc123def456",
                     "modelName" : "User",
                     "modelId" : "123abc"
-                },
+                }
             ]
         }
 
          */
 
-        RequestMessageParser requestMessageParser = new RequestMessageParser(message, connection);
-        if (!requestMessageParser.validate()) {
-            _sendErrorMessage(requestMessageParser, connection);
-        }
+//        RequestMessageParser requestMessageParser = new RequestMessageParser(message, connection);
+//        if (!requestMessageParser.validate()) {
+//            _sendErrorMessage(requestMessageParser, connection);
+//        }
 
-        return new RequestMessage(requestMessageParser.getJson(), connection);
+        return new RequestMessage(new JSONObject()/*requestMessageParser.getJson()*/, connection);
     }
 
-    private static void _sendErrorMessage(RequestMessageParser requestMessageParser, Connection connection)
-    {
-        ResponseMessage responseMessage = new ResponseMessage();
-        responseMessage.setStatus(ResponseMessage.VALIDATE_ERROR_STATUS);
-        connection.send(responseMessage);
-    }
+//    private static void _sendErrorMessage(RequestMessageParser requestMessageParser, Connection connection)
+//    {
+//        ResponseMessage responseMessage = new ResponseMessage();
+//        responseMessage.setStatus(ResponseMessage.VALIDATE_ERROR_STATUS);
+//        connection.send(responseMessage);
+//    }
 }

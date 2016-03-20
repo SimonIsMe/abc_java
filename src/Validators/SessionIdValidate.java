@@ -1,4 +1,4 @@
-package Connection.Message.RequestMessageParser.RequestValidators;
+package Validators;
 
 import Connection.Auth.Auth;
 import Connection.Auth.Exceptions.SessionIdException;

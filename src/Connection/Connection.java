@@ -27,6 +27,11 @@ public class Connection
         this._client = client;
     }
 
+    public ClientInterface getClient()
+    {
+        return this._client;
+    }
+
     public String getId()
     {
         return this._id;

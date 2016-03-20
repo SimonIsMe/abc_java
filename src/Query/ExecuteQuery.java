@@ -15,13 +15,13 @@ public class ExecuteQuery
             case ReadQuery.READ_TYPE:
             case ReadQuery.UPDATE_TYPE:
             case ReadQuery.DELETE_TYPE:
-                if (TableAccess.getInstance().checkAccess(query) &&
-                    RowAccess.getInstance().checkAccess(query)) {
+                if (TableAccess.getInstance().checkAccess(query, connection.getClient().getProject()) &&
+                    RowAccess.getInstance().checkAccess(query, connection.getClient().getProject())) {
                     this._runQueryInDatabase(query);
                 }
                 break;
             case ReadQuery.CREATE_TYPE:
-                if (TableAccess.getInstance().checkAccess(query)) {
+                if (TableAccess.getInstance().checkAccess(query, connection.getClient().getProject())) {
                     this._runQueryInDatabase(query);
                 }
                 break;

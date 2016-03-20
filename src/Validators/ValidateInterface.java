@@ -1,4 +1,4 @@
-package Connection.Message.RequestMessageParser.RequestValidators;
+package Validators;
 
 public interface ValidateInterface
 {
