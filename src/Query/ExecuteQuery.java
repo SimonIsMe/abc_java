@@ -1,7 +1,6 @@
 package Query;
 
 import Db.DbAccessInterface;
-import Db.MySqlAccess;
 import Notification.NotificationManager;
 import Query.Query.Queries.*;
 import Query.Query.Queries.AbstractQuery;
@@ -14,15 +13,16 @@ public class ExecuteQuery
     public void execute(AbstractQuery query, Connection connection)
     {
         switch (query.getType()) {
-            case ReadQuery.READ_TYPE:
-            case ReadQuery.UPDATE_TYPE:
-            case ReadQuery.DELETE_TYPE:
+            case AbstractQuery.GET_BY_ID_TYPE:
+            case AbstractQuery.READ_TYPE:
+            case AbstractQuery.UPDATE_TYPE:
+            case AbstractQuery.DELETE_TYPE:
                 if (TableAccess.getInstance().checkAccess(query, connection.getClient().getProject()) &&
                     RowAccess.getInstance().checkAccess(query, connection.getClient().getProject())) {
                     this._runQueryInDatabase(query, connection);
                 }
                 break;
-            case ReadQuery.CREATE_TYPE:
+            case AbstractQuery.CREATE_TYPE:
                 if (TableAccess.getInstance().checkAccess(query, connection.getClient().getProject())) {
                     this._runQueryInDatabase(query, connection);
                 }
@@ -32,26 +32,28 @@ public class ExecuteQuery
 
     private void _runQueryInDatabase(AbstractQuery query, Connection connection)
     {
-        DbAccessInterface dbAccess = MySqlAccess.getInstance();
-
+        DbAccessInterface dbAccess = connection.getClient().getProject().getDatabaseAccess();
 
         switch (query.getType()) {
-            case ReadQuery.READ_TYPE:
-                dbAccess.read((ReadQuery) query);
+            case AbstractQuery.GET_BY_ID_TYPE:
+                dbAccess.getById((GetByIdQuery) query, connection);
                 break;
-            case ReadQuery.DELETE_TYPE:
+            case AbstractQuery.READ_TYPE:
+                dbAccess.read((ReadQuery) query, connection);
+                break;
+            case AbstractQuery.DELETE_TYPE:
                 DeleteQuery deleteQuery = (DeleteQuery) query;
-                dbAccess.delete(deleteQuery);
+                dbAccess.delete(deleteQuery, connection);
                 this._notifyAfterDelete(deleteQuery, connection);
                 break;
-            case ReadQuery.CREATE_TYPE:
+            case AbstractQuery.CREATE_TYPE:
                 CreateQuery createQuery = (CreateQuery) query;
-                dbAccess.create(createQuery);
+                dbAccess.create(createQuery, connection);
                 this._notifyAfterCreate(createQuery, connection);
                 break;
-            case ReadQuery.UPDATE_TYPE:
+            case AbstractQuery.UPDATE_TYPE:
                 UpdateQuery updateQuery = (UpdateQuery) query;
-                dbAccess.update(updateQuery);
+                dbAccess.update(updateQuery, connection);
                 this._notifyAfterUpdate(updateQuery, connection);
                 break;
         }

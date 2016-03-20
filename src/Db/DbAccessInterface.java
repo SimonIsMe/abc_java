@@ -1,14 +1,13 @@
 package Db;
 
-import Query.Query.Queries.CreateQuery;
-import Query.Query.Queries.DeleteQuery;
-import Query.Query.Queries.ReadQuery;
-import Query.Query.Queries.UpdateQuery;
+import Query.Query.Queries.*;
+import Connection.Connection;
 
 public interface DbAccessInterface
 {
-    public void read(ReadQuery readQuery);
-    public void create(CreateQuery readQuery);
-    public void update(UpdateQuery readQuery);
-    public void delete(DeleteQuery readQuery);
+    public void getById(GetByIdQuery getByIdQuery, Connection connection);
+    public void read(ReadQuery readQuery, Connection connection);
+    public void create(CreateQuery createQuery, Connection connection);
+    public void update(UpdateQuery updateQuery, Connection connection);
+    public void delete(DeleteQuery deleteQuery, Connection connection);
 }
